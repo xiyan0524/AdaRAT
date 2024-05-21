@@ -15,4 +15,8 @@ In this study, we investigated the phenomenon of the different synchronisation o
 * Numpy(1.24.1)
 
 ## Folder contents
-* ```AdaRAT/models```:
+* ```AdaRAT/attack```: Code of adversarial attack (PGD et al.).
+* ```AdaRAT/data```: Deposit of CIFAR-10 and CIFAR-100 datasets, and code for process the datasets.
+* ```AdaRAT/model```: Code of model (Resnet-18 and WRN-34-10).
+* ```AdaRAT/train```: Code of training (including PGD-AT, FAT, DAT, TRADES, KD-AT, IAD, Generalist and ST).
+* ```AdaRAT/make_dir.py```: Create a folder for training results and trained models.

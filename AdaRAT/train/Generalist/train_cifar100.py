@@ -27,9 +27,9 @@ parser.add_argument('--step-size', type=float, default=2 / 255, help='step size'
 parser.add_argument('--norm', type=str, default='Linf', help='type of attack')
 
 parser.add_argument('--resume', type=bool, default=False, help='whether to resume training')
-parser.add_argument('--out-dir',type=str, default='./logs/txt/100',help='dir of output')
-parser.add_argument('--data-dir',type=str, default='./logs/data/100',help='dir of output')
-parser.add_argument('--model-dir',type=str, default='./logs/model/100',help='dir of output')
+parser.add_argument('--out-dir',type=str, default='../../result/cifar100/txt/',help='dir of output')
+parser.add_argument('--data-dir',type=str, default='../../result/cifar100/data/',help='dir of output')
+parser.add_argument('--model-dir',type=str, default='../../result/cifar100/save_model/',help='dir of output')
 parser.add_argument('--ablation', type=str, default='', help='ablation study')
 
 parser.add_argument('--FixRAT', default=False, type=bool, help='use new regularization')

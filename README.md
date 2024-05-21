@@ -23,10 +23,17 @@ In this study, we investigated the phenomenon of the different synchronisation o
 * ```AdaRAT/txt.py```: Write file and empty file operations.
 
 ## Training process
-* Create a folder for training results and models.
+Create a folder for training results and models.
 ```bash
 cd AdaRAT
 python make_dir.py
+```
+Adversarial training (Take the PGD-AT as an example).
+
+* If you want to go to training with a baseline, enter the following command:
+```bash
+cd AdaRAT/train/PGD-AT
+python train_cifar10.py
 ```
 
 

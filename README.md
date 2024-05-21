@@ -20,3 +20,13 @@ In this study, we investigated the phenomenon of the different synchronisation o
 * ```AdaRAT/model```: Code of model (Resnet-18 and WRN-34-10).
 * ```AdaRAT/train```: Code of training (including PGD-AT, FAT, DAT, TRADES, KD-AT, IAD, Generalist and ST).
 * ```AdaRAT/make_dir.py```: Create a folder for training results and trained models.
+* ```AdaRAT/txt.py```: Write file and empty file operations.
+
+## Training process
+* Create a folder for training results and models.
+```bash
+cd AdaRAT
+python make_dir.py
+```
+
+

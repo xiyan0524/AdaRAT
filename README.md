@@ -29,12 +29,45 @@ cd AdaRAT
 python make_dir.py
 ```
 
-Adversarial training (Take the PGD-AT as an example).
+Adversarial training (Take the training PGD-AT in CIFAR-10 dataset as an example).
 
-* If you want to go to training with a baseline, enter the following command:
+* If you want to go to training with baseline, enter the following command:
 ```bash
 cd AdaRAT/train/PGD-AT
 python train_cifar10.py
 ```
 
+* If you want to go to training with FixRAT, enter the following command:
+```bash
+cd AdaRAT/train/PGD-AT
+python train_cifar10.py --FixRAT True
+```
 
+* If you want to go to training with AdaRAT, enter the following command:
+```bash
+cd AdaRAT/train/PGD-AT
+python train_cifar10.py --FixRAT True --AdaRAT True
+```
+
+If you want to run KD-AT and IAD, make sure the file contains teacher models for both standard and adversarial training. The following code can be executed to create the teacher model:
+
+```bash
+cd AdaRAT/train/ST
+python train_cifar10.py 
+```
+
+```bash
+cd AdaRAT/train/PGD-AT
+python train_cifar10.py 
+```
+
+After the model is trained, a final robustness test is performed, containing FGSM, PGD-10, PGD-20, PGD-50, cw and AutoAttack (AA).
+
+## Reference Code
+* PGD-AT: https://github.com/MadryLab/cifar10_challenge
+* FAT: https://github.com/zjfheart/Friendly-Adversarial-Training
+* DAT: https://github.com/YisenWang/dynamic_adv_training
+* TRADRS: https://github.com/yaodongyu/TRADES/
+* KD-AT: https://github.com/VITA-Group/Alleviate-Robust-Overfitting
+* IAD: https://github.com/ZFancy/IAD
+* Generalist: https://github.com/PKU-ML/Generalist

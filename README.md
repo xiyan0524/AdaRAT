@@ -64,7 +64,7 @@ python train_cifar10.py
 You can run the following command to train the model under the CIFAR-100 dataset:
 ```bash
 cd AdaRAT/train/PGD-AT
-python train_cifar100.py
+python train_cifar100.py --FixRAT True --AdaRAT True
 ```
 
 After the model is trained, a final robustness test is performed, containing FGSM, PGD-10, PGD-20, PGD-50, cw and AutoAttack (AA).

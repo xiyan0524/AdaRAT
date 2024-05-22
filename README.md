@@ -28,6 +28,7 @@ Create a folder for training results and models.
 cd AdaRAT
 python make_dir.py
 ```
+
 Adversarial training (Take the PGD-AT as an example).
 
 * If you want to go to training with a baseline, enter the following command:

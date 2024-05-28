@@ -94,8 +94,8 @@ if __name__ == "__main__":
     method = "IAD"
     if args.FixRAT:
         method += "_FixRAT"
-    elif args.AdaRAT:
-        method += "_AdaRAT"
+        if args.AdaRAT:
+            method += "_AdaRAT"
     print("start training!")
     print("train method: %s" % method)
 

@@ -366,8 +366,8 @@ def main():
     method = "generalist"
     if args.FixRAT:
         method += "_FixRAT"
-    elif args.AdaRAT:
-        method += "_AdaRAT"
+        if args.AdaRAT:
+            method += "_AdaRAT"
 
     # model_at = torch.nn.DataParallel(model, device_ids=[1, 0])
     model_at = model.to(device)

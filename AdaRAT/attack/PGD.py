@@ -78,29 +78,6 @@ class PGD_Attack:
             x = torch.clamp(x, 0, 1)
         return x
 
-
-    def A3T_attack(self, inputs, lables):
-        X_adv = torch.zeros_like(inputs)
-        with torch.no_grad():
-            logits = self.model(inputs)
-            predicted = torch.argmax(logits, dim=1)
-        incorrect = torch.masked_select(torch.arange(len(lables)).to(device), predicted != lables)
-        correct = torch.masked_select(torch.arange(len(lables)).to(device), predicted == lables)
-        X_adv[incorrect] = inputs[incorrect]
-        x = inputs.detach() + torch.zeros_like(inputs).uniform_(-self.epsilon, self.epsilon)
-        for i in range(self.iteration):
-            x.requires_grad_()
-            with torch.enable_grad():
-                outputs = self.model(x)
-                loss = criterion_ce(outputs, lables)
-            grad = torch.autograd.grad(loss, [x])[0]
-            x = x.detach() + self.step_size * torch.sign(grad.detach())
-            x = torch.min(torch.max(x, inputs - self.epsilon), inputs + self.epsilon)
-            x = torch.clamp(x, 0, 1)
-        X_adv[correct] = x[correct]
-        return X_adv
-
-
     def attack(self, inputs, labels):
         # self.model.eval()
         x = inputs.detach() + torch.zeros_like(inputs).uniform_(-self.epsilon, self.epsilon)
@@ -156,31 +133,3 @@ class FAT_Attack:
 
         return x_adv
 
-class adaAD_Attack:
-    def __init__(self, model, teacher, epsilon, step_size, iteration):
-        self.model = model
-        self.epsilon = epsilon
-        self.step_size = step_size
-        self.iteration = iteration
-        self.teacher = teacher
-
-    def attack(self, inputs):
-        criterion = nn.KLDivLoss(reduction='none')
-        self.model.eval()
-        self.teacher.eval()
-        x = inputs.detach() + 0.001 * torch.randn(inputs.shape).cuda().detach()
-        for _ in range(self.iteration):
-            x.requires_grad_()
-            with torch.enable_grad():
-                loss_kl = criterion(F.log_softmax(self.model(x), dim=1),
-                                       F.softmax(self.teacher(x), dim=1))
-                loss_kl = torch.sum(loss_kl)
-            grad = torch.autograd.grad(loss_kl, [x])[0]
-            x = x.detach() + self.step_size * torch.sign(grad.detach())
-            x = torch.min(torch.max(x, inputs-self.epsilon), inputs + self.epsilon)
-            x = torch.clamp(x, 0, 1.0)
-
-        self.model.train()
-        x = Variable(torch.clamp(x, 0, 1.0), requires_grad=False)
-
-        return x

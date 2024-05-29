@@ -5,8 +5,8 @@ import torchvision.transforms as transforms
 
 def load(dataset_path, batch_size, drop_last):
     transform_train = transforms.Compose([
-        transforms.RandomCrop(32, padding=4),  # 先四周填充0，在吧图像随机裁剪成32*32
-        transforms.RandomHorizontalFlip(),  # 图像一半的概率翻转，一半的概率不翻转
+        transforms.RandomCrop(32, padding=4),  
+        transforms.RandomHorizontalFlip(), 
         transforms.ToTensor(),
     ])
 
